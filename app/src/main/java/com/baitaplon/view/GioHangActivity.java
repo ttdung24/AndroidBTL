@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import com.baitaplon.R;
 import com.baitaplon.adapter.GioHangAdapter;
+import com.baitaplon.model.DanhMuc;
 import com.baitaplon.model.DonHang;
+import com.baitaplon.model.SanPham;
 import com.baitaplon.model.TaiKhoan;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class GioHangActivity extends AppCompatActivity {
     public static TaiKhoan tk;
@@ -40,6 +43,8 @@ public class GioHangActivity extends AppCompatActivity {
 
     static TextView tvTongtien;
 
+    ArrayList<DonHang> listDh = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,7 @@ public class GioHangActivity extends AppCompatActivity {
         Intent intent = getIntent();
         initView();
         getTaikhoan();
+        getDonhang();
         setGioHang();
         tongtien();
         btThanhtoan.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +63,7 @@ public class GioHangActivity extends AppCompatActivity {
                 if (tk.getTen().equals("") || tk.getDiachi().equals("") || tk.getSdt().equals("")) {
                     Toast.makeText(GioHangActivity.this, "Vui lòng cập nhật thông tin tài khoản", Toast.LENGTH_SHORT).show();
                 } else {
+                    DonHang.id = listDh.size() + 1;
                     DonHang dh = new DonHang(MainActivity.listGH, tvTongtien.getText().toString(), cbThanhtoan.isChecked());
                     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance("https://baitaplon-e10a2-default-rtdb.asia-southeast1.firebasedatabase.app");
                     DatabaseReference db = firebaseDatabase.getReference("donhang");
@@ -101,6 +108,26 @@ public class GioHangActivity extends AppCompatActivity {
             tvGioHangTrong.setVisibility(View.VISIBLE);
             llbottom.setVisibility(View.GONE);
         }
+    }
+
+    private void getDonhang() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://baitaplon-e10a2-default-rtdb.asia-southeast1.firebasedatabase.app");
+        DatabaseReference myRef = database.getReference("donhang").child(user.getUid());
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    DonHang dh = dataSnapshot.getValue(DonHang.class);
+                    listDh.add(dh);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(GioHangActivity.this,"Lấy danh mục thất bại",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private TaiKhoan getTaikhoan() {

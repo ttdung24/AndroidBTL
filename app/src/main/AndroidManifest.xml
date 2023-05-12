@@ -12,7 +12,10 @@
         android:theme="@style/Theme.BaiTapLon"
         tools:targetApi="31">
         <activity
-            android:name=".ThanhToanActivity"
+            android:name=".view.SuaXoaSPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ThemSPActivity"
             android:exported="false" />
         <activity
             android:name=".view.ChitietSPActivity"

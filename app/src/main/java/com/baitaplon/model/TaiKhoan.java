@@ -2,8 +2,9 @@ package com.baitaplon.model;
 
 public class TaiKhoan {
     private String username, ten, diachi, id_user, sdt, email, ava;
+    private boolean permisson;
 
-    public TaiKhoan(String username, String ten, String diachi, String id_user, String sdt, String email, String ava) {
+    public TaiKhoan(String username, String ten, String diachi, String id_user, String sdt, String email, String ava, boolean permisson) {
         this.username = username;
         this.ten = ten;
         this.diachi = diachi;
@@ -11,6 +12,7 @@ public class TaiKhoan {
         this.sdt = sdt;
         this.email = email;
         this.ava = ava;
+        this.permisson = permisson;
     }
 
     public TaiKhoan() {
@@ -70,5 +72,13 @@ public class TaiKhoan {
 
     public void setAva(String ava) {
         this.ava = ava;
+    }
+
+    public boolean isPermisson() {
+        return permisson;
+    }
+
+    public void setPermisson(boolean permisson) {
+        this.permisson = permisson;
     }
 }

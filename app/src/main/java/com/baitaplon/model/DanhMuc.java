@@ -37,4 +37,9 @@ public class DanhMuc {
     public void setImgDanhmuc(String imgDanhmuc) {
         this.imgDanhmuc = imgDanhmuc;
     }
+
+    @Override
+    public String toString() {
+        return tenDanhMuc;
+    }
 }

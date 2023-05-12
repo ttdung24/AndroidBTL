@@ -1,11 +1,28 @@
 package com.baitaplon.model;
 
-public class SanPham {
+import java.io.Serializable;
+
+public class SanPham implements Serializable {
+    public static int id = 1;
     String idSp, nhasx, namsx, img, maDanhMuc, mota, tenSp;
     int gia, slCon;
     float saoDanhgia;
     // { "idSp": "sp01", "nhasx": "", "namsx": "", "maDanhMuc": "", "mota": "", "tenSp": "San pham 1", "gia": 55000, "slCon": 5, "saoDanhgia": 4.5, "img": ""}
-    public SanPham(String idSp, String nhasx, String namsx, String img, String maDanhmuc, String mota, String tenSp, int gia, int slCon, float saoDanhgia) {
+    public SanPham(String nhasx, String namsx, String img, String maDanhMuc, String mota, String tenSp, int gia, int slCon, float saoDanhgia) {
+        this.idSp = "sp" + id ;
+        id = id + 1;
+        this.nhasx = nhasx;
+        this.namsx = namsx;
+        this.img = img;
+        this.maDanhMuc = maDanhMuc;
+        this.mota = mota;
+        this.tenSp = tenSp;
+        this.gia = gia;
+        this.slCon = slCon;
+        this.saoDanhgia = saoDanhgia;
+    }
+
+    public SanPham(String idSp, String nhasx, String namsx, String img, String maDanhMuc, String mota, String tenSp, int gia, int slCon, float saoDanhgia) {
         this.idSp = idSp;
         this.nhasx = nhasx;
         this.namsx = namsx;
@@ -53,14 +70,6 @@ public class SanPham {
         this.img = img;
     }
 
-    public String getMaDanhmuc() {
-        return maDanhMuc;
-    }
-
-    public void setMaDanhmuc(String maDanhmuc) {
-        this.maDanhMuc = maDanhMuc;
-    }
-
     public String getMota() {
         return mota;
     }
@@ -99,5 +108,13 @@ public class SanPham {
 
     public void setSaoDanhgia(float saoDanhgia) {
         this.saoDanhgia = saoDanhgia;
+    }
+
+    public String getMaDanhMuc() {
+        return maDanhMuc;
+    }
+
+    public void setMaDanhMuc(String maDanhMuc) {
+        this.maDanhMuc = maDanhMuc;
     }
 }

@@ -41,6 +41,26 @@
             android:background="@drawable/border_bottom"
             />
         <TextView
+            android:id="@+id/tvThemsp"
+            android:layout_width="match_parent"
+            android:text="Thêm sản phẩm"
+            android:textSize="28dp"
+            android:gravity="left|center"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_bottom"
+            />
+        <TextView
+            android:id="@+id/tvSuaxoaSp"
+            android:layout_width="match_parent"
+            android:text="Sửa xóa sản phẩm"
+            android:textSize="28dp"
+            android:gravity="left|center"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_bottom"
+            />
+        <TextView
             android:id="@+id/tvDangxuat"
             android:layout_width="match_parent"
             android:text="Đăng xuất"

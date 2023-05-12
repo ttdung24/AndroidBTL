@@ -16,6 +16,8 @@ import com.baitaplon.R;
 import com.baitaplon.model.TaiKhoan;
 import com.baitaplon.view.CapNhatTKActivity;
 import com.baitaplon.view.LoginActivity;
+import com.baitaplon.view.SuaXoaSPActivity;
+import com.baitaplon.view.ThemSPActivity;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,7 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserFragment extends Fragment {
     View view;
-    TextView tvUsername, tvCapnhatTK, tvDangxuat;
+    TextView tvUsername, tvCapnhatTK, tvThemSp, tvSuaxoaSp, tvDangxuat;
     CircleImageView imgUser;
     private ArrayList<TaiKhoan> listTaiKhoan= new ArrayList<>();
 
@@ -61,6 +63,11 @@ public class UserFragment extends Fragment {
                         tvUsername.setVisibility(View.VISIBLE);
                         tvUsername.setText(listTaiKhoan.get(listTaiKhoan.size() - 1).getUsername());
                     }
+
+                    if (listTaiKhoan.get(listTaiKhoan.size() - 1).isPermisson() == false) {
+                        tvThemSp.setVisibility(View.GONE);
+                        tvSuaxoaSp.setVisibility(View.GONE);
+                    }
                     Glide.with(UserFragment.this).load(listTaiKhoan.get(listTaiKhoan.size() - 1).getAva()).error(R.drawable.avatardefault).into(imgUser);
                 }
 
@@ -80,6 +87,22 @@ public class UserFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        tvThemSp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ThemSPActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvSuaxoaSp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SuaXoaSPActivity.class);
+                startActivity(intent);
+            }
+        });
         tvDangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +119,8 @@ public class UserFragment extends Fragment {
         tvCapnhatTK = view.findViewById(R.id.tvCapnhatTK);
         tvUsername = view.findViewById(R.id.userName);
         tvDangxuat = view.findViewById(R.id.tvDangxuat);
+        tvThemSp = view.findViewById(R.id.tvThemsp);
+        tvSuaxoaSp = view.findViewById(R.id.tvSuaxoaSp);
         imgUser = view.findViewById(R.id.imgUser);
     }
 }

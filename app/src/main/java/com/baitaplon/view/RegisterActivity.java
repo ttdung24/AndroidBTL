@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     databaseReference = firebaseDatabase.getReference();
                                     String email = user.getEmail() + "";
                                     String id = user.getUid() + "";
-                                    TaiKhoan t = new TaiKhoan(username, "", "", id, "", email, "");
+                                    TaiKhoan t = new TaiKhoan(username, "", "", id, "", email, "", false);
                                     databaseReference.child("taikhoan").child(id).setValue(t);
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);

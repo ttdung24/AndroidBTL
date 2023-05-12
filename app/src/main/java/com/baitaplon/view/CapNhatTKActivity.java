@@ -116,7 +116,7 @@ public class CapNhatTKActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     String imageUrl = uri.toString();
-                                    TaiKhoan t = new TaiKhoan(username + "", name + "", diachi + "", user.getUid() + "", sdt + "", email + "", imageUrl + "");
+                                    TaiKhoan t = new TaiKhoan(username + "", name + "", diachi + "", user.getUid() + "", sdt + "", email + "", imageUrl + "", false);
 
                                     databaseReference.child("taikhoan").child(user.getUid() + "").setValue(t).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
